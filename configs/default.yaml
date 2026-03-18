@@ -1,0 +1,36 @@
+server:
+  host: 0.0.0.0
+  port: 8080
+  #mode: debug/release/test
+  mode: debug
+  readTimeout: 10s
+  writeTimeout: 15s
+  idleTimeout: 60s
+  shutdownTimeout: 10s
+logger:
+  level: info
+  encoding: json
+  development: true
+  file: ./logs/global.log
+  maxSize: 100
+  maxAge: 7
+  maxBackups: 3
+  compress: true
+database:
+  driver: postgres
+  host: 127.0.0.1
+  port: 5432
+  user: postgres
+  password: 123456
+  dbname: item-manager
+  maxIdleConns: 5
+  maxOpenConns: 10
+  connMaxLifetime: 60m
+auth:
+  cookieName: ITEM_SESSION
+  sessionTTL: 24h
+admin:
+  username: admin
+  password: adminadmin
+  email: ""
+  nickname: Administrator

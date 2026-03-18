@@ -1,0 +1,9 @@
+.DS_Store
+.vscode
+
+dist/
+
+.idea
+
+cmd/web/tmp
+cmd/web/tmp/*

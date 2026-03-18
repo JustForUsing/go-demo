@@ -1,0 +1,35 @@
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    image: item-manager-web:1.0
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    networks:
+      - item-manager
+
+  db:
+    image: postgres:16-alpine
+    container_name: postgres16
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=item-manager
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - item-manager
+
+volumes:
+  postgres_data:
+    # 为卷指定名称，方便在其他服务中引用，不指定默认为<上级目录名>_<卷名>，方便各环境隔离
+    name: postgres_data
+
+networks:
+  item-manager:
+    driver: bridge
